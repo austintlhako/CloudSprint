@@ -20,7 +20,7 @@ interface AuthContextType {
   isLoading: boolean;
   isGuest: boolean;
   signIn: (email: string, password: string) => Promise<{ error: string | null }>;
-  signUp: (email: string, password: string) => Promise<{ error: string | null }>;
+  signUp: (email: string, password: string, displayName?: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
 }
 
@@ -79,9 +79,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signUp = async (
     email: string,
     password: string,
+    displayName?: string,
   ): Promise<{ error: string | null }> => {
     if (!supabase) return { error: 'Authentication is not configured.' };
-    const { error } = await supabase.auth.signUp({ email, password });
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: displayName ? { data: { display_name: displayName } } : undefined,
+    });
     return { error: error?.message ?? null };
   };
 

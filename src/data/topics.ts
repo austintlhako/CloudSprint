@@ -1,4 +1,4 @@
-import { SubtopicId, DomainId, Topic } from '../types';
+import type { SubtopicId, DomainId, Topic } from '../types';
 
 export interface DomainMeta {
   id: DomainId;

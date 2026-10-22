@@ -7,7 +7,7 @@
 
 import { questions } from '../data/questions';
 import { getItem, setItem } from '../lib/storage';
-import type { Question, QuizAnswer, QuizAttempt, QuizConfig, TopicId } from '../types';
+import type { Question, QuizAnswer, QuizAttempt, TopicId } from '../types';
 
 const QUIZ_HISTORY_KEY = 'quiz_history';
 

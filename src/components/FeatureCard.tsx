@@ -27,7 +27,7 @@ export default function FeatureCard({
     >
       {/* Icon badge */}
       <div
-        className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${color} text-2xl shadow-lg`}
+        className={`flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br ${color} text-2xl shadow-lg`}
       >
         {icon}
       </div>

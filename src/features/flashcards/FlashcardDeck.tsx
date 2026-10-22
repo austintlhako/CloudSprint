@@ -79,18 +79,20 @@ export const FlashcardDeck: React.FC<FlashcardDeckProps> = ({
   onNavigateToQuiz,
 }) => {
   const [deck, setDeck] = useState<Flashcard[]>(cards);
+  const [prevCards, setPrevCards] = useState<Flashcard[]>(cards);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [progressMap, setProgressMap] = useState<Record<string, FlashcardStatus>>({});
 
   // Sync deck when external cards list changes
-  useEffect(() => {
+  if (cards !== prevCards) {
+    setPrevCards(cards);
     setDeck(cards);
     setCurrentIndex(0);
     setIsFlipped(false);
     setIsCompleted(false);
-  }, [cards]);
+  }
 
   // Load progress from service on mount
   useEffect(() => {

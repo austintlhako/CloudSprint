@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>CloudSprint</title>
+  <defs>
+    <linearGradient id="tile" x1="8" y1="6" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172554"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="bolt" x1="34" y1="18" x2="48" y2="49" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67e8f9"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#tile)"/>
+  <path
+    d="M18.5 42.5h27.2a7.3 7.3 0 0 0 .8-14.56A12.6 12.6 0 0 0 22.2 25.6a8.55 8.55 0 0 0-3.7 16.9Z"
+    fill="#f8fafc"
+  />
+  <path
+    d="m37.2 19.5-9.1 14.1h7.1l-4.1 11.2 12.8-16.1h-7.3l4.3-9.2a2.1 2.1 0 0 0-3.7 0Z"
+    fill="url(#bolt)"
+  />
+</svg>

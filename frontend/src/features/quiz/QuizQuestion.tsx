@@ -103,7 +103,7 @@ export const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
     }
   };
 
-  const diffBadge = getDifficultyBadge(question.difficulty);
+  const diffBadge = getDifficultyBadge(question.difficulty ?? 'beginner');
   const optionLetters = ['A', 'B', 'C', 'D'];
   const hasAnswered = selectedAnswer !== null;
   const isCorrect = hasAnswered && selectedAnswer === question.correctIndex;

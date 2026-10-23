@@ -14,10 +14,6 @@ export interface FlashcardReview {
   nextReviewAt: string;
 }
 
-interface FlashcardProgressRow {
-  card_id: string;
-  status: FlashcardStatus;
-}
 
 /**
  * Returns all available flashcards across all domains
@@ -33,7 +29,7 @@ export function getFlashcardsByTopic(topicId: SubtopicId | 'all'): Flashcard[] {
   if (topicId === 'all') {
     return FLASHCARDS;
   }
-  return FLASHCARDS.filter((card) => card.topicId === topicId);
+  return FLASHCARDS.filter((card) => card.subtopicId === topicId || card.topicId === topicId);
 }
 
 /**

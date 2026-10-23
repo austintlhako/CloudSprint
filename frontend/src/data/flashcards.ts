@@ -59,7 +59,7 @@ const LEGACY_FLASHCARDS: Flashcard[] = [
   {
     id: 'fc-cc-006',
     topicId: 'cloud-concepts',
-    subtopicId: 'cc-benefits',
+    subtopicId: 'cc-cloud-benefits',
     front: 'What is high availability in cloud computing?',
     back: 'The ability of a system to remain operational and accessible with minimum downtime, even during failures. Azure provides SLAs (Service Level Agreements) that guarantee specific uptime percentages (e.g., 99.9%).',
     sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/2-high-availability-scalability-cloud',
@@ -67,7 +67,7 @@ const LEGACY_FLASHCARDS: Flashcard[] = [
   {
     id: 'fc-cc-007',
     topicId: 'cloud-concepts',
-    subtopicId: 'cc-benefits',
+    subtopicId: 'cc-cloud-benefits',
     front: 'Scaling up vs. scaling out — what is the difference?',
     back: 'Scaling up (vertical): Adding more power (CPU, RAM) to an existing resource. Scaling out (horizontal): Adding more instances of a resource (e.g., more VMs). Scaling out provides better fault tolerance.',
     sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/2-high-availability-scalability-cloud',
@@ -75,7 +75,7 @@ const LEGACY_FLASHCARDS: Flashcard[] = [
   {
     id: 'fc-cc-008',
     topicId: 'cloud-concepts',
-    subtopicId: 'cc-benefits',
+    subtopicId: 'cc-cloud-benefits',
     front: 'What is reliability in the context of cloud computing?',
     back: 'The ability of a system to recover from failures and continue to function. The cloud supports reliability through decentralized design — resources deployed in multiple regions ensure that even if one region has a catastrophic event, other regions are still operational.',
     sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/3-reliability-predictability-cloud',
@@ -83,7 +83,7 @@ const LEGACY_FLASHCARDS: Flashcard[] = [
   {
     id: 'fc-cc-009',
     topicId: 'cloud-concepts',
-    subtopicId: 'cc-service-types',
+    subtopicId: 'cc-cloud-service-types',
     front: 'What is IaaS (Infrastructure as a Service)?',
     back: 'The most flexible cloud service category. The provider manages physical hardware, network, and physical security. The customer manages OS, middleware, runtime, data, and applications. Example: Azure Virtual Machines.',
     sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service',
@@ -91,7 +91,7 @@ const LEGACY_FLASHCARDS: Flashcard[] = [
   {
     id: 'fc-cc-010',
     topicId: 'cloud-concepts',
-    subtopicId: 'cc-service-types',
+    subtopicId: 'cc-cloud-service-types',
     front: 'What is PaaS (Platform as a Service)?',
     back: 'A middle ground between IaaS and SaaS. The provider manages infrastructure and platform (OS, middleware, tools). The customer focuses on deploying applications and data. Example: Azure App Service.',
     sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/3-describe-platform-service',
@@ -99,7 +99,7 @@ const LEGACY_FLASHCARDS: Flashcard[] = [
   {
     id: 'fc-cc-011',
     topicId: 'cloud-concepts',
-    subtopicId: 'cc-service-types',
+    subtopicId: 'cc-cloud-service-types',
     front: 'What is SaaS (Software as a Service)?',
     back: 'The most complete cloud service. Users access fully functional applications over the internet. The provider manages everything (infrastructure, platform, and application). Examples: Microsoft 365, Salesforce.',
     sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/4-describe-software-service',

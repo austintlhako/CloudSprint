@@ -441,32 +441,34 @@ export const QUESTIONS: QuizQuestion[] = [
 
   // --- Subtopic: aas-compute-networking (Compute & Networking) ---
   {
-    id: 'q-aas-004',
-    topicId: 'aas-compute-networking',
-    question: 'Which Azure compute service is best suited for automatically managing, orchestrating, and scaling clusters of containerized microservices?',
-    options: [
-      'Azure Virtual Machines',
-      'Azure Container Instances (ACI)',
-      'Azure Kubernetes Service (AKS)',
-      'Azure Batch',
-    ],
-    correctIndex: 2,
-    explanation: 'Azure Kubernetes Service (AKS) is a managed container orchestration service based on open-source Kubernetes, designed for enterprise-grade management, deployment, and autoscaling of container clusters.',
-    sourceUrl: 'https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes',
-    topicId: 'aas-core-architecture',
-    question: 'What is the purpose of Azure availability zones?',
-    options: [
-      'To provide backup internet connectivity',
-      'To provide physically separate locations within an Azure region, each with independent power, cooling, and networking',
-      'To route traffic between different Azure subscriptions',
-      'To replicate data across different countries',
-    ],
-    correctIndex: 1,
-    explanation:
-      'Availability zones are physically separate locations within each Azure region. Each zone has independent power, cooling, and networking and is designed to protect against datacenter-level failures.',
-    sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/5-describe-azure-physical-infrastructure',
-    difficulty: 'beginner',
-  },
+  id: 'q-aas-004',
+  topicId: 'aas-compute-networking',
+  question: 'Which Azure compute service is best suited for automatically managing, orchestrating, and scaling clusters of containerized microservices?',
+  options: [
+    'Azure Virtual Machines',
+    'Azure Container Instances (ACI)',
+    'Azure Kubernetes Service (AKS)',
+    'Azure Batch',
+  ],
+  correctIndex: 2,
+  explanation: 'Azure Kubernetes Service (AKS) is a managed container orchestration service based on open-source Kubernetes, designed for enterprise-grade management, deployment, and autoscaling of container clusters.',
+  sourceUrl: 'https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes',
+},
+{
+  id: 'q-aas-004a',
+  topicId: 'aas-core-architecture',
+  question: 'What is the purpose of Azure availability zones?',
+  options: [
+    'To provide backup internet connectivity',
+    'To provide physically separate locations within an Azure region, each with independent power, cooling, and networking',
+    'To route traffic between different Azure subscriptions',
+    'To replicate data across different countries',
+  ],
+  correctIndex: 1,
+  explanation: 'Availability zones are physically separate locations within each Azure region. Each zone has independent power, cooling, and networking and is designed to protect against datacenter-level failures.',
+  sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/5-describe-azure-physical-infrastructure',
+  difficulty: 'beginner',
+},
   {
     id: 'q-aas-003',
     topicId: 'aas-core-architecture',
@@ -484,7 +486,7 @@ export const QUESTIONS: QuizQuestion[] = [
     difficulty: 'intermediate',
   },
   {
-    id: 'q-aas-004',
+    id: 'q-aas-005',
     topicId: 'aas-core-architecture',
     question: 'Which statement about Azure resource groups is correct?',
     options: [
@@ -535,6 +537,19 @@ export const QUESTIONS: QuizQuestion[] = [
     id: 'q-aas-007',
     topicId: 'aas-storage',
     question: 'Which Azure Blob Storage access tier offers the lowest storage cost per gigabyte, but has high retrieval latency (hours) and the highest data access fee?',
+    options: [
+      'Archive',
+      'Cool',
+      'Hot',
+      'Premium',
+    ],
+    correctIndex: 0,
+    explanation: 'The Archive tier is designed for rarely accessed data stored for at least 180 days. It has the lowest storage cost but the highest access cost and retrieval latency.',
+    sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/',
+    difficulty: 'intermediate',
+  },
+  {
+    id: 'q-aas-008',
     topicId: 'aas-core-architecture',
     question: 'What are sovereign regions in Azure?',
     options: [
@@ -544,8 +559,7 @@ export const QUESTIONS: QuizQuestion[] = [
       'Regions that only support Linux-based workloads',
     ],
     correctIndex: 2,
-    explanation:
-      'Sovereign regions are instances of Azure that are isolated from the main instance of Azure. You may need to use a sovereign region for compliance or legal purposes. Examples include Azure Government (US) and Azure China (operated by 21Vianet).',
+    explanation: 'Sovereign regions are instances of Azure that are isolated from the main instance of Azure. You may need to use a sovereign region for compliance or legal purposes. Examples include Azure Government (US) and Azure China (operated by 21Vianet).',
     sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/5-describe-azure-physical-infrastructure',
     difficulty: 'intermediate',
   },
@@ -761,9 +775,6 @@ export const QUESTIONS: QuizQuestion[] = [
     correctIndex: 1,
     explanation: 'The Total Cost of Ownership (TCO) Calculator helps estimate the cost savings of migrating workloads to Azure by comparing current on-premises datacenter costs (hardware, power, labor, software) with Azure estimated expenses.',
     sourceUrl: 'https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/quick-acm-cost-analysis',
-    explanation:
-      'The Archive tier has the lowest storage cost but the highest cost to access data. It is designed for data that can tolerate several hours of retrieval latency and will remain in the tier for at least 180 days.',
-    sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/',
     difficulty: 'intermediate',
   },
   {
@@ -949,6 +960,7 @@ export const QUESTIONS: QuizQuestion[] = [
     sourceUrl: 'https://learn.microsoft.com/en-us/azure/governance/policy/overview',
     difficulty: 'beginner',
   },
+  // --- Subtopic: amg-governance-compliance (Resource Locks) ---
   {
     id: 'q-amg-005',
     topicId: 'amg-governance-compliance',
@@ -962,6 +974,12 @@ export const QUESTIONS: QuizQuestion[] = [
     correctIndex: 1,
     explanation: 'A CanNotDelete lock (Delete lock) allows authorized users to read and modify a resource, but completely blocks anyone from deleting it until the lock is removed.',
     sourceUrl: 'https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources',
+    difficulty: 'beginner',
+  },
+
+  // --- Subtopic: amg-cost-management (Azure Pricing Calculator) ---
+  {
+    id: 'q-amg-009',
     topicId: 'amg-cost-management',
     question: 'What is the Azure Pricing Calculator used for?',
     options: [
@@ -971,8 +989,7 @@ export const QUESTIONS: QuizQuestion[] = [
       'To compare Azure pricing with AWS',
     ],
     correctIndex: 1,
-    explanation:
-      'The Azure Pricing Calculator is a tool that helps you estimate the cost of Azure products. It allows you to select Azure services and configure them to see an estimated price.',
+    explanation: 'The Azure Pricing Calculator is a tool that helps you estimate the cost of Azure products. It allows you to select Azure services and configure them to an estimated price.',
     sourceUrl: 'https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/',
     difficulty: 'beginner',
   },

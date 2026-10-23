@@ -51,15 +51,16 @@ export interface Topic {
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 
 export interface QuizQuestion {
+  difficulty?: Difficulty;
   id: string; // e.g. "q-cc-001"
-  topicId: SubtopicId;
+  topicId: QuizSelection;
   question: string;
   options: string[]; // exactly 4 options: [A, B, C, D]
   correctIndex: number; // 0‑based index
   explanation: string;
   optionExplanations?: string[]; // explanation for options A-D
   sourceUrl: string;
-  difficulty: Difficulty;
+
 }
 
 // Compatibility alias used throughout the codebase
@@ -77,12 +78,13 @@ export interface QuizAttempt {
   currentIndex: number;
   isSubmitted: boolean;
   score: number; // total correct answers
+  completedAt?: string; // ISO timestamp when quiz was submitted
 }
 
 // ----- Flashcards -----
 export interface Flashcard {
   id: string; // e.g. "fc-cc-001"
-  topicId: DomainId;
+  topicId: DomainId | SubtopicId;
   subtopicId?: SubtopicId;
   front: string; // term or question
   back: string; // definition or answer
@@ -104,6 +106,8 @@ export interface StudyTask {
   title: string;
   domain: Domain;
   subtopic: SubtopicId;
+  /** Alias for subtopic — used in some components for compatibility */
+  topicId?: SubtopicId;
   dueDate: string; // ISO date (YYYY‑MM‑DD)
   dueTime?: string; // Local time (HH:MM)
   estimatedMinutes: number;

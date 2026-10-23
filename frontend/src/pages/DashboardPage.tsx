@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import FeatureCard from '../components/FeatureCard';
 import ProgressBar from '../components/ProgressBar';
 import { topics } from '../data/topics';
@@ -92,7 +91,7 @@ export default function DashboardPage() {
   const domainProgress = topics.map((topic) => {
     const unitIds = topic.subtopics.map((subtopic) => subtopic.id);
     // Flashcard mastery for topic
-    const topicCards = flashcards.filter((fc) => unitIds.includes(fc.topicId));
+    const topicCards = flashcards.filter((fc) => (unitIds as string[]).includes(fc.subtopicId ?? '') || (unitIds as string[]).includes(fc.topicId as string));
     const knownInTopic = topicCards.filter((fc) => {
       const p = cardProgress.find((cp) => cp.cardId === fc.id);
       return p?.status === 'know';
@@ -100,7 +99,7 @@ export default function DashboardPage() {
     const cardPct = topicCards.length > 0 ? (knownInTopic / topicCards.length) * 100 : 0;
 
     // Tasks completed for topic
-    const topicTasks = tasks.filter((t) => t.topicId === topic.id);
+    const topicTasks = tasks.filter((t) => (t.subtopic as string) === topic.id || (t.topicId as string | undefined) === topic.id);
     const doneTasks = topicTasks.filter((t) => t.isCompleted).length;
     const taskPct = topicTasks.length > 0 ? (doneTasks / topicTasks.length) * 100 : 0;
 
@@ -115,7 +114,7 @@ export default function DashboardPage() {
       score: Math.min(100, score),
       cardsCount: topicCards.length,
       knownCards: knownInTopic,
-      questionsCount: generatedQuestions.filter((q) => unitIds.includes(q.topicId)).length,
+      questionsCount: generatedQuestions.filter((q) => (unitIds as string[]).includes(q.topicId as string)).length,
     };
   });
 
@@ -133,7 +132,7 @@ export default function DashboardPage() {
     }
   };
   const activityDates = new Set([
-    ...quizHistory.map((attempt) => attempt.completedAt.slice(0, 10)),
+    ...quizHistory.map((attempt) => (attempt.completedAt ?? '').slice(0, 10)).filter(Boolean),
     ...cardProgress.map((progress) => progress.lastReviewedAt.slice(0, 10)),
     ...tasks.filter((task) => task.completedAt).map((task) => task.completedAt!.slice(0, 10)),
   ]);
@@ -161,8 +160,8 @@ export default function DashboardPage() {
       .map((key) => {
         try { return JSON.parse(localStorage.getItem(key) ?? '{}') as { country?: string; school?: string }; } catch { return {}; }
       });
-    const recordedCountries = new Set(recordedProfiles.map((profile) => profile.country).filter(Boolean)).size;
-    const recordedSchools = new Set(recordedProfiles.map((profile) => profile.school).filter(Boolean)).size;
+    void new Set(recordedProfiles.map((profile) => profile.country).filter(Boolean)).size;
+    void new Set(recordedProfiles.map((profile) => profile.school).filter(Boolean)).size;
     return (
       <div className="public-landing">
         <section className="public-hero" aria-labelledby="landing-heading">

@@ -37,7 +37,7 @@ export const FlashcardsPage: React.FC = () => {
   const topicFilteredCards =
     selectedTopic === 'all'
       ? allCards
-      : allCards.filter((card) => card.topicId === selectedTopic);
+      : allCards.filter((card) => card.subtopicId === selectedTopic || card.topicId === selectedTopic);
 
   // Filter cards by status pill
   const activeDeckCards = topicFilteredCards.filter((card) => {

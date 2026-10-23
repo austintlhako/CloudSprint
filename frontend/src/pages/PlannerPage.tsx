@@ -163,7 +163,7 @@ export default function PlannerPage() {
       userId: null,
       title: `Review mistake: ${item.question.question.slice(0, 48)}…`,
       domain,
-      subtopic: item.question.topicId,
+      subtopic: item.question.topicId as import('../types').SubtopicId,
       dueDate: today,
       dueTime: '18:00',
       estimatedMinutes: 20,

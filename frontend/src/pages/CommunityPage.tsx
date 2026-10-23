@@ -1,4 +1,5 @@
-import { FormEvent, useState } from 'react';
+import type { FormEvent } from 'react';
+import { useState } from 'react';
 
 interface Post { id: string; name: string; text: string; createdAt: string; }
 const key = 'cloudsprint_community_posts';

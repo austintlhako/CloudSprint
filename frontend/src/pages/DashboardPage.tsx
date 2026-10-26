@@ -54,8 +54,14 @@ export default function DashboardPage() {
     };
   }, []);
   useEffect(() => {
-    if (!isGuest) awardLoginPoint();
-    setPoints(getLearnerPoints());
+    if (!isGuest) {
+      awardLoginPoint();
+    }
+    // Defer setState so it doesn't trigger synchronously inside the effect body.
+    const id = setTimeout(() => {
+      setPoints(getLearnerPoints());
+    }, 0);
+    return () => clearTimeout(id);
   }, [isGuest, tasks, quizHistory]);
   useEffect(() => {
     void getAvailableReviews(20).then((reviews) => {
@@ -90,16 +96,16 @@ export default function DashboardPage() {
 
   const domainProgress = topics.map((topic) => {
     const unitIds = topic.subtopics.map((subtopic) => subtopic.id);
-    // Flashcard mastery for topic
-    const topicCards = flashcards.filter((fc) => (unitIds as string[]).includes(fc.subtopicId ?? '') || (unitIds as string[]).includes(fc.topicId as string));
+    // Flashcard mastery for topic (flashcards have topicId as SubtopicId)
+    const topicCards = flashcards.filter((fc) => (unitIds as string[]).includes(fc.topicId as string));
     const knownInTopic = topicCards.filter((fc) => {
       const p = cardProgress.find((cp) => cp.cardId === fc.id);
       return p?.status === 'know';
     }).length;
     const cardPct = topicCards.length > 0 ? (knownInTopic / topicCards.length) * 100 : 0;
 
-    // Tasks completed for topic
-    const topicTasks = tasks.filter((t) => (t.subtopic as string) === topic.id || (t.topicId as string | undefined) === topic.id);
+    // Tasks completed for topic (match subtopic ids)
+    const topicTasks = tasks.filter((t) => unitIds.includes(t.subtopic));
     const doneTasks = topicTasks.filter((t) => t.isCompleted).length;
     const taskPct = topicTasks.length > 0 ? (doneTasks / topicTasks.length) * 100 : 0;
 

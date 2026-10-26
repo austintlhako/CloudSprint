@@ -199,7 +199,9 @@ The main routes currently include:
 - `/developer/testimonials` — temporary local-only developer testimonial
   studio
 
-Protected routes show a login requirement to guests.
+All learning and support routes are available in guest mode. Guest activity is
+stored locally in the browser; signing in remains optional for account-based
+profile features and Supabase-backed synchronization.
 
 ## Data and privacy behavior
 

@@ -2,14 +2,10 @@ import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useAuth } from '../context/AuthContext';
-import LoginRequired from './LoginRequired';
-
-const loginRequiredPaths = ['/quiz', '/flashcards', '/planner', '/labs', '/community', '/friends', '/profile', '/reviews', '/support', '/developer/testimonials'];
 
 export default function Layout() {
   const { isGuest } = useAuth();
   const location = useLocation();
-  const requiresLogin = isGuest && loginRequiredPaths.some((path) => location.pathname.startsWith(path));
   const showFooter = location.pathname === '/';
   const isPublicHome = isGuest && location.pathname === '/';
   useEffect(() => {
@@ -42,7 +38,7 @@ export default function Layout() {
         tabIndex={-1}
         className="app-main mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 sm:py-8 focus:outline-none"
       >
-        {requiresLogin ? <LoginRequired /> : <Outlet />}
+        <Outlet />
       </main>
 
       {/* Persistent Footer */}

@@ -284,7 +284,7 @@ export default function Navbar() {
           <div className="profile-wrap">
             <button className="profile-button" onClick={() => setShowProfile((value) => !value)} aria-expanded={showProfile}>
               <span className="avatar">{user?.avatarUrl ? <img src={user.avatarUrl} alt="" /> : initials}</span>
-              <span className="profile-copy"><strong>{displayName}</strong><small>{isGuest ? 'Log in required' : 'My account'}</small></span>
+              <span className="profile-copy"><strong>{displayName}</strong><small>{isGuest ? 'Guest mode' : 'My account'}</small></span>
               <span>⋮</span>
             </button>
             {showProfile && (

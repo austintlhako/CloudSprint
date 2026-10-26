@@ -2,7 +2,7 @@
 // Auth Modal Component — Dev B
 // ============================================================
 // Allows users to Sign In, Sign Up, or Continue as Guest.
-// Gracefully indicates if Supabase is offline/unconfigured.
+// Supports optional account authentication alongside guest mode.
 // ============================================================
 
 import React, { useState } from 'react';
@@ -94,12 +94,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             ? 'Sign up to sync your study tasks and quiz progress across devices.'
             : 'Sign in to continue your AZ-900 study journey.'}
         </p>
-
-        {!isSupabaseConfigured && (
-          <div className="mb-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs">
-            <strong>Offline / Guest Mode:</strong> Supabase credentials are not connected yet. You can continue as a Guest; your progress is saved locally in your browser.
-          </div>
-        )}
 
         {error && (
           <div className="mb-4 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">

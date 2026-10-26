@@ -38,7 +38,8 @@ To ensure user sign-up and authentication work smoothly on the deployed producti
 ## 3. Database Health & Pre-Launch Checklist
 
 - [x] Initial migration executed (`supabase/migrations/001_initial_schema.sql`).
-- [x] RLS enabled on all three tables (`study_tasks`, `flashcard_progress`, `quiz_attempts`).
+- [ ] RLS safety migration executed (`supabase/migrations/003_enable_rls_all_tables.sql`).
+- [ ] RLS verified on all application tables (`study_tasks`, `flashcard_progress`, `quiz_attempts`, `app_reviews`).
 - [x] Indexing verified for `user_id`, `due_date`, and `completed_at`.
 - [x] Fallback to `localStorage` verified if offline or if Supabase keys are missing.
 - [x] Zero build errors during `npm run build` production bundling.

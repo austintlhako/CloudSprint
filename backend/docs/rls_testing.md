@@ -2,7 +2,7 @@
 
 > **Author:** Developer B (Backend Specialist)  
 > **Status:** Verified & Automated  
-> **Target:** `study_tasks`, `flashcard_progress`, `quiz_attempts`
+> **Target:** `study_tasks`, `flashcard_progress`, `quiz_attempts`, `app_reviews`
 
 ---
 

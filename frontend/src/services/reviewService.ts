@@ -1,3 +1,5 @@
+import { supabase } from '../lib/supabase';
+
 export interface AppReview {
   id: string;
   rating: number;
@@ -92,4 +94,3 @@ export async function saveAvailableReview(review: Omit<AppReview, 'id' | 'create
   }
   return mapSharedReview(data);
 }
-import { supabase } from '../lib/supabase';

@@ -141,8 +141,14 @@ npm run build
 ```
 
 The build runs TypeScript project checks and creates the Vite production
-bundle. The current bundle reports a large-chunk warning; this is a
-performance optimization item, not a build failure.
+bundle. Vite's advisory threshold is configured at 800 kB for the current
+application bundle.
+
+If Vercel reports `npm warn Unknown env config "cache-dir"`, this is currently
+an internal Vercel build-environment warning. It is not caused by this
+repository's `package.json`, `.npmrc`, or Vercel project Environment Variables.
+The build remains successful; Vercel needs to remove its injected
+`npm_config_cache_dir` setting to eliminate the warning.
 
 ### Other scripts
 

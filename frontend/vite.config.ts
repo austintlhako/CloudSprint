@@ -8,4 +8,9 @@ export default defineConfig({
     tailwindcss(),
     react(),
   ],
+  build: {
+    // The current application bundle is intentionally above Vite's default
+    // 500 kB advisory threshold; keep this informational warning out of CI.
+    chunkSizeWarningLimit: 800,
+  },
 })

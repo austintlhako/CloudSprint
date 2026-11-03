@@ -18,6 +18,13 @@ When deploying the frontend to **Vercel** or **Netlify**, configure the followin
 > [!CAUTION]
 > **NEVER** add `SUPABASE_SERVICE_ROLE_KEY` to Vercel/Netlify environment variables. The service role key bypasses RLS and must never be included in client-side code bundles.
 
+> [!NOTE]
+> If Vercel logs `npm warn Unknown env config "cache-dir"`, this is currently
+> an internal Vercel build-environment warning. It is not caused by this
+> repository or the project's Environment Variables. The build remains
+> successful; Vercel needs to remove its injected `npm_config_cache_dir`
+> setting to eliminate the warning.
+
 ---
 
 ## 2. Supabase Production Authentication Settings

@@ -54,7 +54,6 @@ const navLinks: NavLinkItem[] = [
   { to: '/quiz', label: 'Mock exams', icon: '✓' },
   { to: '/flashcards', label: 'Flashcards', icon: '▣' },
   { to: '/planner', label: 'Study planner', icon: '◷' },
-  { to: '/labs', label: 'Labs', icon: '⌘' },
   { to: '/community', label: 'Community', icon: '◎' },
   { to: '/reviews', label: 'Reviews', icon: '★' },
   { to: '/friends', label: 'Study with friends', icon: '♧' },

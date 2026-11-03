@@ -739,8 +739,6 @@ html.light-mode {
 .quiz-history-card h1 { color:#f8fafc; font-size:clamp(1.35rem, 3vw, 1.8rem); margin:5px 0; }
 .quiz-history-card p { color:#94a3b8; font-size:12px; margin:0; }
 .quiz-history-card strong { color:#67e8f9; font-size:18px; }
-.labs-page-card { max-width:900px; }
-.labs-page-list { display:flex; flex-direction:column; gap:10px; }
 .light-mode .quiz-history-card h1 { color:var(--color-text-primary); }
 .light-mode .quiz-history-card p { color:var(--color-text-muted); }
 .review-page-card h2 { margin-bottom:8px; }

@@ -10,7 +10,6 @@ import FriendsPage from './pages/FriendsPage';
 import SupportPage from './pages/SupportPage';
 import ReviewsPage from './pages/ReviewsPage';
 import DeveloperTestimonialsPage from './pages/DeveloperTestimonialsPage';
-import LabsPage from './pages/LabsPage';
 import InfoPage from './pages/InfoPage';
 
 export default function App() {
@@ -20,7 +19,6 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/quiz" element={<QuizPage />} />
-          <Route path="/labs" element={<LabsPage />} />
           <Route path="/flashcards" element={<FlashcardsPage />} />
           <Route path="/planner" element={<PlannerPage />} />
           <Route path="/community" element={<CommunityPage />} />

@@ -31,7 +31,7 @@ permissions before a public launch.
 - Flashcards with flipping, keyboard controls, shuffle, review status, mastery
   tracking, and review history.
 - Study planner with tasks, due dates, completion state, and study milestones.
-- Labs, mistakes, progress, streak, exam countdown, points, and leaderboard
+- Mistakes, progress, streak, exam countdown, points, and leaderboard
   views.
 
 ### Account and community features
@@ -69,7 +69,7 @@ The current points implementation intentionally uses simple, auditable rules:
 - One point for a login on a calendar day.
 - One point for completing an exam on a calendar day.
 - Multiple exams on the same day count as one exam point.
-- Flashcards, labs, planner tasks, and quiz scores do not currently add points.
+- Flashcards, planner tasks, and quiz scores do not currently add points.
 - Fictional or seeded leaderboard users are not included.
 - A learner must provide a full name containing at least two words before
   appearing on the leaderboard.
@@ -179,8 +179,6 @@ migration workflow:
    learner data tables and policies.
 2. `backend/supabase/migrations/002_app_reviews.sql` creates shared reviews,
    public read access, and owner-only insert/delete policies.
-- `backend/supabase/migrations/004_lab_progress.sql` creates private
-   completion tracking for the guided AZ-900 labs.
 - `backend/supabase/migrations/005_friend_invites.sql` stores invitations
    created by signed-in learners.
 
@@ -198,7 +196,6 @@ The main routes currently include:
 - `/quiz` — mock exams
 - `/flashcards` — flashcard study
 - `/planner` — study planner
-- `/labs` — labs
 - `/community` — community
 - `/reviews` — learner reviews
 - `/friends` — study with friends

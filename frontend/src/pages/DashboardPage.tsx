@@ -327,7 +327,7 @@ export default function DashboardPage() {
             <article className="dashboard-tool-card points-card">
               <div className="tool-card-heading"><span className="tool-icon">✦</span><span><strong>{translate('Your points')}</strong><small>Earned from learning activities</small></span></div>
               <div className="streak-number">{points.toLocaleString()} <small>points</small></div>
-              <p className="tool-note">Quizzes, flashcards, and planner tasks count.</p>
+              <p className="tool-note">Quizzes, flashcards, labs, and planner tasks count.</p>
             </article>
           </div>
         </div>

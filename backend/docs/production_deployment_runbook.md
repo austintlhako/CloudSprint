@@ -46,6 +46,7 @@ To ensure user sign-up and authentication work smoothly on the deployed producti
 
 - [x] Initial migration executed (`supabase/migrations/001_initial_schema.sql`).
 - [ ] RLS safety migration executed (`supabase/migrations/003_enable_rls_all_tables.sql`).
+- [ ] Guided lab progress migration executed (`supabase/migrations/004_lab_progress.sql`).
 - [ ] Friend invite migration executed (`supabase/migrations/005_friend_invites.sql`).
 - [ ] RLS verified on all application tables (`study_tasks`, `flashcard_progress`, `quiz_attempts`, `app_reviews`).
 - [x] Indexing verified for `user_id`, `due_date`, and `completed_at`.

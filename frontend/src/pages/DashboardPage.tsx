@@ -13,13 +13,8 @@ import { getAvailableReviews, getDailyFeaturedReviews } from '../services/review
 import { useAppLanguage } from '../services/i18n';
 import type { QuizAttempt, StudyTask, TopicId } from '../types';
 
-const PLAN_KEY = 'cloudsprint_study_plan';
 // Add team members here when their names, profile images, and social links are ready.
 const TEAM_MEMBERS: Array<{ name: string; role: string; image: string; linkedin: string; github: string }> = [];
-
-function getDefaultExamDate(): string {
-  return new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10);
-}
 
 export default function DashboardPage() {
   const generatedQuestions = createGeneratedQuestions();
@@ -28,14 +23,6 @@ export default function DashboardPage() {
   // Load live data from the async planner service.
   const [quizHistory] = useState<QuizAttempt[]>(() => getQuizHistory());
   const [tasks, setTasks] = useState<StudyTask[]>([]);
-  const [examDate, setExamDate] = useState(() => {
-    try {
-      const saved = localStorage.getItem(PLAN_KEY);
-      return saved ? JSON.parse(saved).examDate || getDefaultExamDate() : getDefaultExamDate();
-    } catch {
-      return getDefaultExamDate();
-    }
-  });
   const [points, setPoints] = useState(0);
   const [topReviews, setTopReviews] = useState<Awaited<ReturnType<typeof getAvailableReviews>>>([]);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
@@ -125,18 +112,6 @@ export default function DashboardPage() {
   });
 
   const today = new Date().toISOString().slice(0, 10);
-  const daysUntilExam = Math.max(0, Math.ceil((new Date(`${examDate}T00:00:00`).getTime() - new Date(`${today}T00:00:00`).getTime()) / 86400000));
-  const updateExamDate = (nextExamDate: string) => {
-    if (!nextExamDate) return;
-    setExamDate(nextExamDate);
-    try {
-      const saved = localStorage.getItem(PLAN_KEY);
-      const currentPlan = saved ? JSON.parse(saved) : {};
-      localStorage.setItem(PLAN_KEY, JSON.stringify({ ...currentPlan, examDate: nextExamDate }));
-    } catch {
-      // The planner page provides the full persisted edit flow if storage is unavailable.
-    }
-  };
   const activityDates = new Set([
     ...quizHistory.map((attempt) => (attempt.completedAt ?? '').slice(0, 10)).filter(Boolean),
     ...cardProgress.map((progress) => progress.lastReviewedAt.slice(0, 10)),
@@ -355,15 +330,6 @@ export default function DashboardPage() {
               <p className="tool-note">Quizzes, flashcards, labs, and planner tasks count.</p>
             </article>
           </div>
-          <article className="dashboard-tool-card countdown-card">
-          <div className="tool-card-heading"><span className="tool-icon">⏱</span><span><strong>{translate('Exam countdown')}</strong><small>Set or update your target date</small></span></div>
-          <div className="countdown-number">{daysUntilExam} <small>days</small></div>
-          <div className="countdown-track"><span style={{ width: `${Math.min(100, Math.max(8, 100 - daysUntilExam / 3))}%` }} /></div>
-          <label className="dashboard-date-control">Exam date
-            <input id="dashboard-exam-date" name="dashboardExamDate" type="date" min={today} value={examDate} onChange={(event) => updateExamDate(event.target.value)} />
-          </label>
-          <p className="tool-note">Your study plan is on track. Aim for two focused sessions this week.</p>
-          </article>
         </div>
       </section>
 

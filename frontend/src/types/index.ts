@@ -145,6 +145,7 @@ export interface LearnerProfile {
   githubUrl: string;
   linkedinUrl: string;
   school: string;
+  programme: string;
 }
 
 export interface AuthState {

@@ -5,6 +5,7 @@ import { AuthModal } from './AuthModal';
 import type { EducationLevel, LearnerProfile } from '../types';
 import { getCountryOptions } from '../data/countries';
 import { useAppLanguage } from '../services/i18n';
+import { allProgrammeOptions, allSchoolOptions, programmeOptions, schoolOptions } from '../data/educationOptions';
 
 interface NavLinkItem {
   to: string;
@@ -45,7 +46,7 @@ const defaultNotifications: AppNotification[] = [
 const profileStorageKey = 'cloudsprint_learner_profile';
 const emptyProfile: LearnerProfile = {
   fullName: '', nickname: '', educationLevel: 'other', country: '',
-  githubUrl: '', linkedinUrl: '', school: '',
+  githubUrl: '', linkedinUrl: '', school: '', programme: '',
 };
 
 const navLinks: NavLinkItem[] = [
@@ -69,6 +70,7 @@ export default function Navbar() {
   const [showProfile, setShowProfile] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(() => localStorage.getItem('cloudsprint_nav_collapsed') === 'true');
   const [showProfileSettings, setShowProfileSettings] = useState(false);
+  const [profileSaved, setProfileSaved] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [profile, setProfile] = useState<LearnerProfile>(() => {
     try { return { ...emptyProfile, ...JSON.parse(localStorage.getItem(profileStorageKey) ?? '{}') }; } catch { return emptyProfile; }
@@ -182,7 +184,7 @@ export default function Navbar() {
   const saveProfile = (event: FormEvent) => {
     event.preventDefault();
     if (user) localStorage.setItem(`${profileStorageKey}_${user.id}`, JSON.stringify(profile));
-    setShowProfileSettings(false);
+    setProfileSaved(true);
   };
   const downloadAccountData = () => {
     const accountData: Record<string, unknown> = {
@@ -289,7 +291,7 @@ export default function Navbar() {
             </button>
             {showProfile && (
               <div className="profile-menu">
-                {!isGuest && <button onClick={() => { setShowProfileSettings(true); setShowProfile(false); }}>Settings · My account ({profileCompletion}%)</button>}
+                {!isGuest && <button onClick={() => { setProfileSaved(false); setShowProfileSettings(true); setShowProfile(false); }}>Settings · My account ({profileCompletion}%)</button>}
                 {!isGuest && <button onClick={() => navigate('/profile')}>Open profile page</button>}
 
                 {!isGuest && <button onClick={() => void signOut()}>Log out</button>}
@@ -380,10 +382,13 @@ export default function Navbar() {
             <label htmlFor="profile-nickname">Nickname<input id="profile-nickname" name="nickname" value={profile.nickname} onChange={(event) => setProfile({ ...profile, nickname: event.target.value })} required /></label>
             <label htmlFor="profile-education-level">Level of study<select id="profile-education-level" name="educationLevel" value={profile.educationLevel} onChange={(event) => setProfile({ ...profile, educationLevel: event.target.value as EducationLevel })}><option value="other">Other</option><option value="university">University</option><option value="college">College</option><option value="bootcamp">Bootcamp</option><option value="highschool">High school</option></select></label>
             <label htmlFor="profile-country">Country<select id="profile-country" name="country" value={profile.country} onChange={(event) => setProfile({ ...profile, country: event.target.value })} required><option value="">Select your country</option>{getCountryOptions().map((country) => <option key={country.code} value={country.name}>{country.name}</option>)}</select></label>
-            <label htmlFor="profile-school">School, university or programme<input id="profile-school" name="school" value={profile.school} onChange={(event) => setProfile({ ...profile, school: event.target.value })} required /></label>
+            <label htmlFor="profile-school">School or institution<select id="profile-school" name="school" value={allSchoolOptions.includes(profile.school as typeof allSchoolOptions[number]) ? profile.school : '__custom__'} onChange={(event) => setProfile({ ...profile, school: event.target.value === '__custom__' ? '' : event.target.value })} required><option value="">Select a school or institution</option>{schoolOptions.map((group) => <optgroup label={group.label} key={group.label}>{group.options.map((school) => <option key={school} value={school}>{school}</option>)}</optgroup>)}<option value="__custom__">Other - enter my school</option></select></label>
+            <label htmlFor="profile-school-custom">Custom school or institution<input id="profile-school-custom" name="schoolCustom" value={allSchoolOptions.includes(profile.school as typeof allSchoolOptions[number]) ? '' : profile.school} onChange={(event) => setProfile({ ...profile, school: event.target.value })} placeholder="Enter your school or institution" required={!allSchoolOptions.includes(profile.school as typeof allSchoolOptions[number])} /></label>
+            <label htmlFor="profile-programme">Programme<select id="profile-programme" name="programme" value={allProgrammeOptions.includes(profile.programme as typeof allProgrammeOptions[number]) ? profile.programme : '__custom__'} onChange={(event) => setProfile({ ...profile, programme: event.target.value === '__custom__' ? '' : event.target.value })} required><option value="">Select a programme</option>{programmeOptions.map((group) => <optgroup label={group.label} key={group.label}>{group.options.map((programme) => <option key={programme} value={programme}>{programme}</option>)}</optgroup>)}<option value="__custom__">Other - enter my programme</option></select></label>
+            <label htmlFor="profile-programme-custom">Custom programme<input id="profile-programme-custom" name="programmeCustom" value={allProgrammeOptions.includes(profile.programme as typeof allProgrammeOptions[number]) ? '' : profile.programme} onChange={(event) => setProfile({ ...profile, programme: event.target.value })} placeholder="Enter your programme" required={!allProgrammeOptions.includes(profile.programme as typeof allProgrammeOptions[number])} /></label>
             <label htmlFor="profile-github">GitHub link<input id="profile-github" name="githubUrl" type="url" placeholder="https://github.com/..." value={profile.githubUrl} onChange={(event) => setProfile({ ...profile, githubUrl: event.target.value })} required /></label>
             <label htmlFor="profile-linkedin">LinkedIn link<input id="profile-linkedin" name="linkedinUrl" type="url" placeholder="https://linkedin.com/in/..." value={profile.linkedinUrl} onChange={(event) => setProfile({ ...profile, linkedinUrl: event.target.value })} required /></label>
-            <div className="profile-settings-actions"><button type="button" onClick={() => setShowProfileSettings(false)}>Cancel</button><button type="submit">Save settings</button></div>
+            <div className="profile-settings-actions"><button type="button" onClick={() => setShowProfileSettings(false)}>Cancel</button><button type="submit">Save settings</button>{profileSaved && <span className="save-confirmation" role="status">Saved</span>}</div>
             <section className="account-danger-zone" aria-labelledby="account-actions-heading">
               <h3 id="account-actions-heading">Account actions</h3>
               <p>Download a copy of your CloudSprint data before deactivating or deleting your account.</p>

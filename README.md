@@ -179,6 +179,10 @@ migration workflow:
    learner data tables and policies.
 2. `backend/supabase/migrations/002_app_reviews.sql` creates shared reviews,
    public read access, and owner-only insert/delete policies.
+- `backend/supabase/migrations/004_lab_progress.sql` creates private
+   completion tracking for the guided AZ-900 labs.
+- `backend/supabase/migrations/005_friend_invites.sql` stores invitations
+   created by signed-in learners.
 
 If the reviews migration has not been applied, the frontend logs a warning and
 uses local browser storage for reviews instead.
